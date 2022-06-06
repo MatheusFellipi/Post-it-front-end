@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Flex, Text, Icon, Tag } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-import { useFecth } from "../../hook/useFetch";
+import { useQuery } from "react-query";
 
-type quest = {
-  id: string;
-  title: string;
-  status: string;
-  description: string;
-};
+import { Quests } from "../../types/quest";
+import { api } from "../../services/axios";
 
 export function Note() {
-  const { data: questData } = useFecth<quest[]>("task");
   const [edit, setEdit] = useState<boolean>(true);
+
+  const { data: questData } = useQuery<Quests[]>("questlistdata", async () => {
+    const res = await api.get("task");
+    return res.data;
+  });
 
   return (
     <>

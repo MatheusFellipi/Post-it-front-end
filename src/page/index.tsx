@@ -9,10 +9,16 @@ export function Tolist() {
   return (
     <>
       <Header />
-      <Flex>
+      <Flex
+        p={{ sm: "1rem" }}
+        as={"section"}
+        justify={{ md: "flex-end", sm: "flex-end" }}
+      >
         <CreateNote />
       </Flex>
       <Flex
+        p={{ sm: "1rem" }}
+        as={"section"}
         flexDirection={{ lg: "row", md: "row", sm: "column" }}
         wrap={"wrap"}
         w={"100vw"}
